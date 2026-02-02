@@ -63,6 +63,15 @@ function LinkedList() {
         }
     }
 
+    function pop() {
+        if (list.length === 0) {
+            return undefined;
+        } else {
+            const value = list.value;
+            list = list.nextNode;
+            return value;
+        }
+    }
 
 
 
