@@ -21,42 +21,36 @@ function LinkedList() {
 
     
     function size() {
-        let size = 0;
-        if (list.nextNode === null) {
-            size ++;
-            return size;
+        let count = 0;
+        let current = list;
+
+        while (current !== null) {
+            count++;
+            current = current.nextNode;
         }
-        
-        const values = Object.values(list);
-    
-        for (const value of values) {
-            if (!Array.isArray(value)) {
-                size ++;
-            } else {
-                const nextList = list.nextNode;
-                size += nextList.size();
-            }
-        }
-        return size;
+
+        return count;
     }
 
+
     function head() {
-        if (list.length === 0) {
+        if (list === null) {
             return undefined;
         } else {
-            return value;
+            return list.value;
         }
     }
 
     function tail() {
-        if (list.length === 0) {
-            return undefined;
-        } else if (list.nextNode === null) {
-            return value;
-        } else {
-            const nextList= list.nextNode;
-            return nextList.tail();
+        let current = list;
+        let value = undefined;
+
+        while (current !== null) {
+            value = current.value;
+            current = current.nextNode;
         }
+
+        return value;
     }
 
     function at(index) {
@@ -85,11 +79,17 @@ function LinkedList() {
     }
 
     function contains(value) {
-        if (value === list.value) {
-            return true;
-        } else {
-            return list.nextNode.contains(value);
+        let current = list;
+
+        while (current !== null) {
+            if (current.value === value) {
+                return true;
+            } else {
+                current = current.nextNode;
+            }
         }
+
+        return false;
     }
 
     function findIndex(v) {
