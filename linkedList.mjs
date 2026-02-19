@@ -57,12 +57,12 @@ function LinkedList() {
         if (index > list.length - 1) {
             return undefined;
         } else {
-            for (let i = 0; i < index; i ++){
+            let current = list;
+            for (let i = 0; i <= index; i ++){
                 if (i === index) {
-                    return value;
+                    return current.value;
                 } else {
-                    const nextList = list.nextNode;
-                    return nextList.at(i);
+                    current = current.nextNode;
                 }
             }
         }
@@ -94,35 +94,31 @@ function LinkedList() {
 
     function findIndex(v) {
         let index = 0;
-        
-        const values = Object.values(list);
-    
-        for (const value of values) {
-            if (!Array.isArray(value)){
-                if (v === list.value) {
-                    return index;
-                }
-                index ++;
-            } else if (value === null){
-                return -1;
-            } else {
-                const nextList = list.nextNode;
-                index += nextList.findIndex();
+        let current = list;
+
+        while (current !== null) {
+            if (current.value === v) {
+                return index;
             }
+            index ++;
+            current = current.nextNode;
         }
 
-        return index;
+        return -1;
     }
 
     function toString() {
         let string = "";
+        let current = list;
         
-        if (list.value === null) {
-            string += "null";
-            return string;
+        while (current !== null) {
+            string += `(${current.value}) -> `;
+            current = current.nextNode;
         }
-        string += list.value;
-        return string += list.nextNode.toString();
+
+        string += "(null)";
+
+        return string;
     }
 
     return {list, append, prepend, size, head, tail, at, pop, contains, findIndex, toString, get list() { return list; }};

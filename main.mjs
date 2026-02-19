@@ -26,6 +26,12 @@ console.log("What's popping?",list.pop());
 console.log("Includes:", list.contains("cat"));
 console.log("Includes:", list.contains("dog"));
 
+console.log("Length: ", list.size());
+
+console.log("at(2)", list.at(1));
+
+
+console.log("find index of 'parrot'", list.findIndex("dog"));
 
 
 //Test it out
